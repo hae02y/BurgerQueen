@@ -11,11 +11,14 @@ public class OrderApp {
 
     public void start(){
 
+
+
         ProductRepository productRepository = new ProductRepository();
         Product[] products = productRepository.getAllProducts();
         Menu menu = new Menu(products);
         Cart cart = new Cart(productRepository,menu);
 
+        Order order = new Order(cart);
         System.out.println("🍔BurgerQeen Order Service");
         while (true) {
             menu.printMenu();
@@ -23,6 +26,7 @@ public class OrderApp {
 
             if(input.equals("+")){
                 //주문내역출력
+                order.makeOrder();
                 break;
             }
             else {
