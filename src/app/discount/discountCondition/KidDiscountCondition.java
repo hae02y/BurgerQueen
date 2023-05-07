@@ -1,12 +1,18 @@
 package app.discount.discountCondition;
 
 import app.discount.FixedAmountDiscountPolicy;
+import app.discount.discountPolicy.DiscountPolicy;
 
 import java.util.Scanner;
 
-public class KidDiscountCondition {
+public class KidDiscountCondition implements DiscountCondition {
     private boolean isSatisfied;
-    private FixedAmountDiscountPolicy fixedAmountDiscountPolicy = new FixedAmountDiscountPolicy(500);
+    //private FixedAmountDiscountPolicy fixedAmountDiscountPolicy = new FixedAmountDiscountPolicy(500);
+    private DiscountPolicy discountPolicy;
+
+    public KidDiscountCondition(DiscountPolicy discountPolicy) {
+        this.discountPolicy = discountPolicy;
+    }
 
     public boolean isSatisfied() {
         return isSatisfied;
@@ -26,6 +32,6 @@ public class KidDiscountCondition {
     }
 
     public int applyDiscount(int price){
-        return  fixedAmountDiscountPolicy.calculateDiscountedPrice(price);
+        return  discountPolicy.calculateDiscountedPrice(price);
     }
 }
